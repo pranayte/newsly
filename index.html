@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>News App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .headline {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>News App</h1>
+    
+    <h2>Headlines</h2>
+    <form action="/headlines" method="POST">
+        <!-- Display news headlines -->
+        {% for key, value in news_data.items() %}
+        <div class="headline">
+            <input type="radio" id="{{ key }}" name="headline" value="{{ value['Label'] }}">
+            <label for="{{ key }}">{{ value['Label'] }}</label>
+        </div>
+        {% endfor %}
+        <button type="submit">Choose Headline</button>
+    </form>
+    
+    <h2>Voice Commands</h2>
+    <form action="/voice-command" method="POST">
+        <button type="submit">Listen for Voice Command</button>
+    </form>
+    
+    <div id="output">
+        <!-- Output of the selected headline and news articles will be displayed here -->
+        <h3>Output:</h3>
+        <p>{{ output }}</p>
+    </div>
+    
+</body>
+</html>
